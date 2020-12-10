@@ -1,0 +1,77 @@
+import "customGameSettings.lobby";
+
+globalvar define isDebug = WorkshopSettingToggle("Debug", "Debug", false, 0);
+globalvar define setupTime = WorkshopSettingInteger("Time", "Setup Time", 25, 0, 55, 4);
+globalvar define assembleTime = WorkshopSettingInteger("Time", "Assemble Heros Time", 8, 0, 30, 3);
+
+rule: "Set Debug Functions"
+{
+    if (!isDebug)
+    {
+        DisableInspectorRecording();
+    }    
+}
+
+
+rule: "Set Assembling Heroes Time"
+if (IsAssemblingHeroes())
+{
+    SetMatchTime(assembleTime);
+}
+
+rule: "Set Setup Time"
+if (IsInSetup())
+{
+    SetMatchTime(setupTime);
+}
+
+globalvar define FirstPointTimeRemovalAmount =  WorkshopSettingInteger("Time", "Game Start Time Removal Amount", 70, 30, 160, 0);
+globalvar define MaxCapPointTimeRemovalAmount = WorkshopSettingInteger("Time", "Maximum Capture Point Time Removal Amount (Divide by Team Score Each Capture)", 70, 30, 160, 1);
+globalvar define lastPointOne = 0;
+globalvar define setFirstPointOne = false; 
+globalvar define lastPointTwo = 0; 
+globalvar define setFirstPointTwo = false; 
+
+rule: "Set First Point Time"
+if (IsGameInProgress())
+{
+    if (lastPointOne == 0 && !setFirstPointOne && IsTeamOnOffense(Team.Team1))
+    {
+        SetMatchTime(MatchTime() - FirstPointTimeRemovalAmount);
+        setFirstPointOne = true;
+    }
+    if (lastPointTwo == 0 && !setFirstPointTwo && IsTeamOnOffense(Team.Team2))
+    {
+        SetMatchTime(MatchTime() - FirstPointTimeRemovalAmount);
+        setFirstPointTwo = true;
+    }
+}
+
+rule: "Init Main Loop"
+Event.OngoingGlobal
+{  
+while(true)
+{
+    if (IsTeamOnOffense(Team.Team1) && lastPointOne < 2)
+        {
+            if (lastPointOne != TeamScore(Team.Team1))
+            {
+                SetMatchTime(MatchTime() - (MaxCapPointTimeRemovalAmount / TeamScore(Team.Team1)));
+                lastPointOne = TeamScore(Team.Team1);
+            }
+        }
+        if (IsTeamOnOffense(Team.Team2) && lastPointTwo < 2)
+        {
+            if (lastPointTwo != TeamScore(Team.Team2))
+            {
+                SetMatchTime(MatchTime() - (MaxCapPointTimeRemovalAmount / TeamScore(Team.Team2)));
+                lastPointTwo = TeamScore(Team.Team2);
+            }
+        }
+        if (MatchRound() == 3)
+        {
+            return;
+        }
+        MinWait(WaitBehavior.IgnoreCondition);
+    }
+}

@@ -1,0 +1,41 @@
+{
+  "Lobby": {
+    "Allow Players Who Are In Queue": true,
+    "Map Rotation": "After A Game",
+    "Match Voice Chat": true,
+    "Max Spectators": 12,
+    "Return To Lobby": "Never",
+    "Team Balancing": "After A Game"
+  },
+  "Modes": {
+    "All": {
+      "Health Pack Respawn Time Scalar": 95.0,
+      "Limit Roles": "2 Of Each Role Per Team",
+      "Respawn Time Scalar": 65.0
+    },
+    "Escort": {
+      "Competitive Rules": true,
+      "Payload Speed Modifier": 190.0
+    },
+    "Hybrid": {
+      "Disabled Maps": [
+        "Blizzard World (Winter)",
+        "Eichenwalde (Halloween)",
+        "Hollywood (Halloween)",
+        "King's Row (Winter)"
+      ],
+      "Capture Speed Modifier": 190.0,
+      "Competitive Rules": true,
+      "Payload Speed Modifier": 190.0
+    }
+  },
+  "Heroes": {
+    "General": {
+     "General": {
+       "Movement Speed": 125,
+       "Ultimate Generation": 120
+     }
+    }
+  },
+  "Description": "Short on time? We got you covered with this speedy hybrid/push gamemode! Workshop Code: 1QY9F v1.1.0-Beta",
+}
