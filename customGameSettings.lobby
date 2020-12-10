@@ -32,8 +32,8 @@
   "Heroes": {
     "General": {
      "General": {
-       "Movement Speed": 125,
-       "Ultimate Generation": 120
+       "Movement Speed": 125.0,
+       "Ultimate Generation": 120.0
      }
     }
   },
