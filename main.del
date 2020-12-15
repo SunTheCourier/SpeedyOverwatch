@@ -25,7 +25,7 @@ if (IsInSetup())
     SetMatchTime(setupTime);
 }
 
-globalvar define FirstPointTimeRemovalAmount =  WorkshopSettingInteger("Time", "Game Start Time Removal Amount", 70, 30, 160, 0);
+globalvar define FirstPointTimeRemovalAmount =  WorkshopSettingInteger("Time", "Game Start Time Removal Amount", 75, 30, 160, 0);
 globalvar define MaxCapPointTimeRemovalAmount = WorkshopSettingInteger("Time", "Maximum Capture Point Time Removal Amount (Divide by Team Score Each Capture)", 70, 30, 160, 1);
 globalvar define lastPointOne = 0;
 globalvar define setFirstPointOne = false; 
@@ -49,7 +49,7 @@ if (IsGameInProgress())
 
 rule: "Init Main Loop"
 Event.OngoingGlobal
-{  
+{ 
 while(true)
 {
     if (IsTeamOnOffense(Team.Team1) && lastPointOne < 2)

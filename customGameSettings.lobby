@@ -10,12 +10,13 @@
   "Modes": {
     "All": {
       "Health Pack Respawn Time Scalar": 95.0,
-      "Limit Roles": "2 Of Each Role Per Team",
+      "Limit Roles": "Off",
+      "Hero Limit": "Off",
       "Respawn Time Scalar": 65.0
     },
     "Escort": {
       "Competitive Rules": true,
-      "Payload Speed Modifier": 190.0
+      "Payload Speed Modifier": 200.0
     },
     "Hybrid": {
       "Disabled Maps": [
@@ -24,15 +25,15 @@
         "Hollywood (Halloween)",
         "King's Row (Winter)"
       ],
-      "Capture Speed Modifier": 190.0,
+      "Capture Speed Modifier": 180.0,
       "Competitive Rules": true,
-      "Payload Speed Modifier": 190.0
+      "Payload Speed Modifier": 200.0
     }
   },
   "Heroes": {
     "General": {
      "General": {
-       "Movement Speed": 125.0,
+       "Movement Speed": 120.0,
        "Ultimate Generation": 120.0
      }
     }
